@@ -12,30 +12,30 @@ import java.io.OutputStream;
  * @author Alejandro Duarte
  */
 @SpringUI
-@Push
-public class VaadinUI extends UI implements Upload.Receiver, Upload.StartedListener, Upload.SucceededListener {
-
-    private final ProcessingService processingService;
+@Push // enable UI modifications from background threads in the server
+public class VaadinUI extends UI implements Upload.Receiver, Upload.SucceededListener {
 
     private Upload upload;
     private ProgressBar progressBar;
-    private OutputStream outputStream;
 
-    public VaadinUI(ProcessingService processingService) {
+    private final ProcessingService processingService;
+    private FastByteArrayOutputStream outputStream;
+
+    public VaadinUI(ProcessingService processingService) { // processingService is injected by Spring
         this.processingService = processingService;
     }
 
     @Override
     protected void init(VaadinRequest request) {
-        // create an upload component and set a Receiver
-        upload = new Upload("Upload a file:", this);
-        upload.addStartedListener(this);
+        // create an Upload component and set a Receiver and a SucceededListener
+        upload = new Upload("Upload a file", this);
         upload.addSucceededListener(this);
 
-        // create an initially invisible ProgressBar component
+        // create an initially invisible and indeterminate ProgressBar component
         progressBar = new ProgressBar();
         progressBar.setVisible(false);
-        progressBar.setWidth("200px");
+        progressBar.setIndeterminate(true);
+        progressBar.setCaption("Uploading...");
 
         // configure the layout
         VerticalLayout mainLayout = new VerticalLayout(upload, progressBar);
@@ -43,39 +43,32 @@ public class VaadinUI extends UI implements Upload.Receiver, Upload.StartedListe
     }
 
     @Override
-    public void uploadStarted(Upload.StartedEvent event) {
+    public OutputStream receiveUpload(String s, String s1) {
         progressBar.setVisible(true);
-        progressBar.setCaption("Uploading...");
-        progressBar.setIndeterminate(true); // will be changed to false during file processing time
-    }
-
-    @Override
-    public OutputStream receiveUpload(String filename, String mimeType) {
-        upload.setVisible(false);
         return outputStream = new FastByteArrayOutputStream();
     }
 
     @Override
-    public void uploadSucceeded(Upload.SucceededEvent event) {
-        // update progress bar
-        progressBar.setCaption("Processing...");
-        progressBar.setIndeterminate(false); // file processing time
+    public void uploadSucceeded(Upload.SucceededEvent succeededEvent) {
+        upload.setVisible(false);
 
-        // invoke file processing backend service passing listeners to update the UI
-        processingService.processData(outputStream.toString(), this::updateProcessingProgress, this::processingSucceeded);
+        progressBar.setCaption("Processing...");
+        progressBar.setIndeterminate(false);
+
+        // the actual job is started inside the service class in a new thread
+        processingService.processData(outputStream.toString(),
+                this::processingUpdated, this::processingSucceeded);
     }
 
-    private void updateProcessingProgress(float percentage) {
-        // this is called from a separate thread -> use UI.access() to update any UI components
+    private void processingUpdated(Float percentage) {
+        // use access when modifying the UI from a background thread
         access(() -> progressBar.setValue(percentage));
     }
 
     private void processingSucceeded() {
-        // this is called from a separate thread -> use UI.access() to update any UI components
         access(() -> {
             progressBar.setVisible(false);
             Notification.show("Done!");
         });
     }
-
 }

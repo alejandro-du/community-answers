@@ -1,8 +1,9 @@
 package com.example.vaadinupload;
 
-import com.vaadin.server.SerializableConsumer;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.util.function.Consumer;
 
 /**
  * @author Alejandro Duarte
@@ -15,7 +16,7 @@ public class ProcessingService {
      **/
     @Async // run in a separate thread
     public void processData(String data,
-                            SerializableConsumer<Float> progressListener,
+                            Consumer<Float> progressListener,
                             Runnable succeededListener) {
 
         final int STEPS = 20;
