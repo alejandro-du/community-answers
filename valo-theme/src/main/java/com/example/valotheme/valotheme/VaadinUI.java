@@ -1,5 +1,6 @@
 package com.example.valotheme.valotheme;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
@@ -10,6 +11,7 @@ import org.vaadin.crudui.layout.impl.HorizontalSplitCrudLayout;
  * @author Alejandro Duarte.
  */
 @SpringUI
+@Theme("darktheme")
 public class VaadinUI extends UI {
 
     @Override
