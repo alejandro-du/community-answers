@@ -1,7 +1,7 @@
 click-image-in-grid
 ==============
 
-Example application showing how to handle clicks in `Grid`s that contain images.
+Example Vaadin Framework application showing how to handle clicks `Grid`s that contain images.
 
 Running the example
 ==================
