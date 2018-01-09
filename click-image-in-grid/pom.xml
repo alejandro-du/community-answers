@@ -11,7 +11,6 @@
 	<artifactId>click-image-in-grid</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>click-image-in-grid</name>
 
 	<prerequisites>
 		<maven>3</maven>
