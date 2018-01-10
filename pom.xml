@@ -13,6 +13,7 @@
         <module>vaadin-upload</module>
         <module>valo-theme</module>
         <module>click-image-in-grid</module>
+        <module>side-menu</module>
     </modules>
 
 </project>
