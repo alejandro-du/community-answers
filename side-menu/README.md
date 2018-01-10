@@ -7,6 +7,10 @@ multiple view navigation.
 Running the example
 ========================
 
+```
 git clone https://github.com/alejandro-du/community-answers.git
 cd community-answers/side-menu
 mvn package jetty:run
+```
+
+Point your browser to http://localhost:8080.
