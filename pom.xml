@@ -14,6 +14,7 @@
         <module>valo-theme</module>
         <module>click-image-in-grid</module>
         <module>side-menu</module>
+        <module>multi-data-binding</module>
     </modules>
 
 </project>
