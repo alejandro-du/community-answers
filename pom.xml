@@ -15,6 +15,9 @@
         <module>click-image-in-grid</module>
         <module>side-menu</module>
         <module>multi-data-binding</module>
+        <module>binder-warnings</module>
+        <module>view-enter</module>
+        <module>vaadin-flow-demo</module>
     </modules>
 
 </project>
