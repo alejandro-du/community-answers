@@ -10,4 +10,4 @@ mvn package jetty:run
 
 # Video
 
-You can find a video that shows how develop this application from scratch and explains concepts related to Vaadin 10 and Vaadin Flow at https://www.youtube.com/watch?v=Un8zKzw6twM&t=165s
+You can find a video that shows how develop this application from scratch and explains concepts related to Vaadin 10 and Vaadin Flow at https://www.youtube.com/watch?v=Un8zKzw6twM
