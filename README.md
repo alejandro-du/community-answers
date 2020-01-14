@@ -1,5 +1,5 @@
 # community-answers
 
-Several demo applications I have used as support for answers on [vaadin.com](https://vaadin.com/forum) and [stackoverflow.com](https://stackoverflow.com).
+Demo applications used in [Community Answers](https://www.youtube.com/watch?v=USF35wZPxZk&list=PLcRrh9hGNaln3i0stypuu_hxQMXYy8eOU) on [vaadin.com](https://vaadin.com/forum) and [stackoverflow.com](https://stackoverflow.com).
 
-Each sub-module is a separate and independent application. See their README.md files for more information on how to compile and run.
+Each Maven sub-module is a separate and independent application. See the corresponding README.md files files for more information on how to compile and run the applications.

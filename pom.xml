@@ -18,6 +18,7 @@
         <module>binder-warnings</module>
         <module>view-enter</module>
         <module>vaadin-flow-demo</module>
+        <module>dependency-injection</module>
     </modules>
 
 </project>
