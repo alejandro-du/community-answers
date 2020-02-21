@@ -19,6 +19,7 @@
         <module>view-enter</module>
         <module>vaadin-flow-demo</module>
         <module>dependency-injection</module>
+        <module>unit-testing</module>
     </modules>
 
 </project>
