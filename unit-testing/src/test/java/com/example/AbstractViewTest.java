@@ -39,6 +39,10 @@ public abstract class AbstractViewTest extends ParallelTest {
         this("", By.tagName("body"));
     }
 
+    public AbstractViewTest(String route) {
+        this(route, By.tagName("body"));
+    }
+
     protected AbstractViewTest(String route, By rootSelector) {
         this.route = route;
         this.rootSelector = rootSelector;
